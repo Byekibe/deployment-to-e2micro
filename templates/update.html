@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close remove-outline" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+
+    {% if current_user.id == id %}
+        <h1>Update user...</h1>
+        <form class="shadow p-3" action="/update/{{name_to_update.id}}" method="POST">
+            {{ form.hidden_tag() }}
+
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", value=name_to_update.name) }}
+
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control", value=name_to_update.email) }}
+
+            {{ form.age.label(class="form-label") }}
+            {{ form.age(class="form-control", value=name_to_update.age) }}
+
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control", value=name_to_update.username) }}
+            <br>
+            {{ form.submit(class="btn btn-outline-secondary", value="Update") }}
+            <button class="btn btn-danger btn-sm"><a href="{{url_for('delete', id=user.id)}}">Delete</a></button>
+        </form>
+
+        {% else %}
+
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <h2>Sorry! You can't edit the user...</h2>
+            <button type="button" class="btn-close remove-outline" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+    {% endif %}
+        
+    {% endblock %}

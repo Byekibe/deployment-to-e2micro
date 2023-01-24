@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container-width {
+    margin-top: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.remove-outline {
+    border: none;
+}
+
+.remove-outline:focus {
+    outline: none;
+}
